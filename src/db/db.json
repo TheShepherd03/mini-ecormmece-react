@@ -1,0 +1,9 @@
+{
+    "categories":[{"id":0,"title":"Fridge"},
+                {"id":1,"title":"Kettles"},
+                {"id":2,"title":"Televisions"}],
+    "products":[
+            {"id":0,"catID":0,"title":"Beko White Fridge Freezer"},
+            {"id":1,"catID":1,"title":"Whirl Pool White Fridge Freezer"}
+    ]
+}
