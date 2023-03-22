@@ -4,6 +4,9 @@
                 {"id":2,"title":"Televisions"}],
     "products":[
             {"id":0,"catID":0,"title":"Beko White Fridge Freezer"},
-            {"id":1,"catID":1,"title":"Whirl Pool White Fridge Freezer"}
+            {"id":1,"catID":0,"title":"Whirl Pool White Fridge Freezer"},
+            {"id":2,"catID":2,"title":"Samsung FlatScreen TV"},
+            {"id":3,"catID":2,"title":"Samsung Curved Screen(4K) TV"},
+            {"id":3,"catID":1,"title":"Smeg Kettle"}
     ]
 }
