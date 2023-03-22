@@ -1,32 +1,33 @@
 import './App.css';
 import Category from './components/category';
+import { getCategories,getProducts } from './fetcher';
 import React,{useState} from 'react';
 
 function App() {
-  const[categories,setCategories]=useState([]);
-  const[products,setProducts]=useState([]);
+  const[categories,setCategories]=useState({errormessage:'',data:[]});
+  const[products,setProducts]=useState({errormessage:'',data:[]});
 
   React.useEffect(()=>{
-    fetch("http://localhost:3001/categories")
-    .then(response=>response.json())
-    .then(data=>{console.log(data);
-      setCategories(data);})
+    const fetchData=async()=>{
+    const responseObject=await getCategories();
+    setCategories(responseObject);}
+    fetchData();
   },[])
 
   const handleCategoryClick=id=>{
-    fetch("http://localhost:3001/products?catID="+id)
-    .then(response=>response.json())
-    .then(data=>{console.log(data);
-      setProducts(data);})
-  }
+    const fetchData=async()=>{
+    const responseObject=await getProducts(id);
+      setProducts(responseObject);}
+      fetchData();
+    }
 
   const renderCategories=()=>{
-    return categories.map(c=>
+    return categories.data.map(c=>
       <Category key={c.id} id={c.id} title={c.title} onCategoryClick={()=>handleCategoryClick(c.id)}/>);
   }
 
-  const renserProducts=()=>{
-    return products.map(
+  const renderProducts=()=>{
+    return products.data.map(
       p=><div>{p.title}</div>
     )
   }
@@ -36,10 +37,12 @@ function App() {
 
     <section>
     <nav>
-      {categories && renderCategories()}
+      {categories.errormessage && <div>Error:{categories.errormessage}</div>}
+      {categories.data && renderCategories()}
     </nav>
     <article><h1>Products</h1>
-      {products && renserProducts()}
+      {products.errormessage && <div>Error:{products.errormessage}</div>}
+      {products && renderProducts()}
     </article>
     </section>
     <footer>footer</footer>
